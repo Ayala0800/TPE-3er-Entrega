@@ -14,19 +14,6 @@
         }
 
         function get($params = []){
-            /*
-            $user = $this->authHelper->currentUser();
-            if(!$user){
-                $this->view->response('Unauthorized', 401);
-                return;
-            }
-            
-            if($user->role!='ADMIN'){
-                $this->view->response('Forbidden', 403);
-                return;
-            }*/
-            /*---------------------FUNCION GET------------------------------*/
-
             $parametros = [];
 
             if (isset($_GET['sort'])){
@@ -52,13 +39,25 @@
                 $cerveza = $this->model->getCerveza($params[':ID']);
                 if (!empty($cerveza)){
                     //subrecurso
-                    if($params[':subrecurso']){
+                    if(isset($params[':subrecurso']) && $params[':subrecurso']){
                         switch ($params[':subrecurso']){
                             case 'nombre':
                                 $this->view->response($cerveza->nombre, 200);
                             break;
+                            case 'IBU':
+                                $this->view->response($cerveza->IBU, 200);
+                            break;
                             case 'ALC':
                                 $this->view->response($cerveza->ALC, 200);
+                            break;
+                            case 'stock':
+                                $this->view->response($cerveza->stock, 200);
+                            break;
+                            case 'descripcion':
+                                $this->view->response($cerveza->ALC, 200);
+                            break;
+                            case 'estilo':
+                                $this->view->response($cerveza->estilo, 200);
                             break;
                             default:
                                 $this->view->response('La cerveza no contiene '.$params[':subrecurso'].'.', 404);

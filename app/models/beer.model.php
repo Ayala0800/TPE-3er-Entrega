@@ -6,10 +6,10 @@ class BeerModel extends Model{
     //DEVUELVE TODOS LOS cervezas AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
     function getCervezas($parametros = []){
 
-        $sort = isset($parametros['sort']) ? $parametros['sort'] : 'id_cerveza';
-        $order = isset($parametros['order']) ? strtoupper($parametros['order']) : 'ASC';
+        $sort = isset($parametros['sort']) ? $parametros['sort'] : 'id_cerveza'; //valor x default
+        $order = isset($parametros['order']) ? strtoupper($parametros['order']) : 'ASC'; //valor x default
     
-        $validColumns = ['id_cerveza', 'nombre', 'IBU', 'ALC', 'id_estilo', 'stock', 'estilo'];
+        $validColumns = ['id_cerveza', 'nombre', 'IBU', 'ALC', 'id_estilo', 'stock', 'descripcion', 'estilo'];
         if(!in_array($sort, $validColumns)){
             $sort = 'id_cerveza';
         }
