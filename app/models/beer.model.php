@@ -3,12 +3,21 @@ require_once 'app/models/model.php';
 require_once 'config.php';
 class BeerModel extends Model{
 
-    //DEVUELVE TODOS LOS cervezaS AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
-    function getCervezas(){
+    //DEVUELVE TODOS LOS cervezas AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
+    function getCervezas($parametros = []){
+
+        $sort = isset($parametros['sort']) ? $parametros['sort'] : 'id_cerveza';
+        $order = isset($parametros['order']) ? strtoupper($parametros['order']) : 'ASC';
+    
+        $validColumns = ['id_cerveza', 'nombre', 'IBU', 'ALC', 'id_estilo', 'stock', 'estilo'];
+        if(!in_array($sort, $validColumns)){
+            $sort = 'id_cerveza';
+        }
+
         $sentence = $this->db->prepare(
             "SELECT cervezas.*, estilos.nombre AS estilo
             FROM cervezas
-            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo");
+            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo ORDER BY $sort $order");
         $sentence->execute();
         $cervezas = $sentence->fetchAll(PDO::FETCH_OBJ);
         return $cervezas;

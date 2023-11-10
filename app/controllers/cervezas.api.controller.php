@@ -14,7 +14,7 @@
         }
 
         function get($params = []){
-
+            /*
             $user = $this->authHelper->currentUser();
             if(!$user){
                 $this->view->response('Unauthorized', 401);
@@ -24,9 +24,21 @@
             if($user->role!='ADMIN'){
                 $this->view->response('Forbidden', 403);
                 return;
-            }
+            }*/
             /*---------------------FUNCION GET------------------------------*/
-            if (empty($params)){
+
+            $parametros = [];
+
+            if (isset($_GET['sort'])){
+                $parametros['sort'] = $_GET['sort'];
+            }
+
+            if (isset($_GET['order'])){
+                $parametros['order'] = $_GET['order'];
+            }
+
+
+            if (empty($params)){ //si no hay parametro (algun id), muestra todas.
                 /* filtrar
                 $filterPending = false;
                 if(isset($_GET['pending'])){
@@ -34,7 +46,7 @@
                 }
                 */
 
-                $cervezas = $this->model->getCervezas();
+                $cervezas = $this->model->getCervezas($parametros);
                 $this->view->response($cervezas, 200);
             }else{
                 $cerveza = $this->model->getCerveza($params[':ID']);
