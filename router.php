@@ -21,10 +21,6 @@ $router->addRoute('estilos/:ID', 'GET', 'EstilosApiController', 'get');
 $router->addRoute('estilos/:ID', 'PUT', 'EstilosApiController', 'update');
 $router->addRoute('estilos/:ID', 'DELETE', 'EstilosApiController', 'delete');
 
-
-
-$router->addRoute('user/token', 'GET', 'UserApiController', 'getToken');
-
-
+$router->addRoute('user/token', 'GET', 'UserApiController', 'getToken'); //<- otorga el token para acceder a las funcionalidades.
 
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
