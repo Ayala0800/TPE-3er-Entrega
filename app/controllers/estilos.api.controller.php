@@ -16,17 +16,6 @@ class EstilosApiController extends ApiController{
     }
 
     function get($params = []){
-        //valido si esta logueado y si es admin
-        $user = $this->authHelper->currentUser();
-        if(!$user){
-            $this->view->response('Unauthorized', 401);
-            return;
-        }
-        
-        if($user->role!='ADMIN'){
-            $this->view->response('Forbidden', 403);
-            return;
-        }
         /*---------------------FUNCION GET------------------------------*/
         if (empty($params)){
             $estilos = $this->model->getEstilos();
