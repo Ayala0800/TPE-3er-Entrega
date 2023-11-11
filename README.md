@@ -1,6 +1,6 @@
 # TPE-3er-Entrega
 Integrantes : Agustina Quinteros (21agustinaa@gmail.com) - Lucas Ayala (lucasayala0800@gmail.com) 
-## ENDPOINTS
+## ENDPOINTS 
 ###CERVEZAS
 **GET:/cervezas** -> Este Endpoint devuelve la lista de cervezas de la base de datos, que se mostraran de esta manera:
 	{
