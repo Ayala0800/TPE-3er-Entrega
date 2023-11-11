@@ -21,19 +21,19 @@ class ComentariosModel extends Model{
     }
 
     function getComentario($id_comentario){
-        $sentence = $this->db->prepare(
-            "SELECT comentarios.*, cervezas.nombre AS cerveza
-            FROM comentarios
-            JOIN cervezas ON comentarios.id_cerveza = cerveza.id_cerveza
-            WHERE id_comentario=?");
+        $sentence = $this->db->prepare("SELECT comentarios.*, cervezas.nombre AS cerveza
+        FROM comentarios
+        JOIN cervezas ON comentarios.id_cerveza = cervezas.id_cerveza
+        WHERE id_comentario=?");
         $sentence->execute(array($id_comentario));
         $comentario = $sentence->fetch(PDO::FETCH_OBJ);
         return $comentario;
     }
 
     function deleteComentario($id_comentario){
-        $sentence = $this->db->prepare("DELETE FROM `comentarios` WHERE id_comentario=?");
-        $sentence->execute([$id_comentario]);
+        $sentence = $this->db->prepare("DELETE FROM comentarios WHERE id_comentario=?");
+        $sentence->execute(array($id_comentario));
+        return $sentence->rowCount();
     }
 
     function addComentario($detalle, $id_cerveza){
