@@ -47,10 +47,14 @@ _ESTILOS_
 
 
 **GET:/estilos** -> Este Endpoint devuelve la lista de estilos de la base de datos, que se mostraran de esta manera:
+
 	{
-        "id_estilo": 1,
-        "nombre": "Ginger pale ale"
-    }
+
+		"id_estilo": 1,
+
+		"nombre": "Ginger pale ale"
+
+	}
 
     
 **POST:/estilos** -> Este endpoint agrega un nuevo estilo de cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
@@ -70,12 +74,18 @@ _COMENTARIOS_
 
 
 **GET:/comentarios** -> Este Endpoint devuelve la lista de comentarios realizados sobre una cerveza especifica de la base de datos, que se mostraran de esta manera:
-	{
-        "id_comentario": 1,
-        "descripcion": "Muy rica!",
-        "id_cerveza": 4,
-        "cerveza": "Raices"
-    }
+
+|{
+        
+ 	"id_comentario": 1,
+ 
+ 	"descripcion": "Muy rica!",
+        
+	"id_cerveza": 4,
+        
+	"cerveza": "Raices"
+ 
+ }
 
     
 **GET:/ccomentarios/:ID** -> Este Endpoint devuelve un comentario especifico de la base de datos indicando su ID. Si no se encuentra, devuelve un mensaje tipo: "El comentario con el id=' ' no existe."
@@ -84,4 +94,4 @@ _COMENTARIOS_
 **DELETE:/comentarios/:ID** -> Este endpoint elimina un comentario de cerveza especificando su ID. Si este existe, devuelve un mensaje tipo: "El comentario con el id=' ' ha sido borrado.". Caso contrario, devuelve un mensaje tipo: "El comentario con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
 
 
-**POST:/estilos** -> Este endpoint agrega un nuevo comentario de una cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
+**POST:/comentarios** -> Este endpoint agrega un nuevo comentario de una cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
