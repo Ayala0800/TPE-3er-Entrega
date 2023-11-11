@@ -77,13 +77,32 @@
                 return $this->view->response("El comentario que desea eliminar no existe", 404);
             }
         }
-        function create($params = null){
-            $data = $this->getData();
-            $id = $this->model->addComentario($data->descripcion, $data->id_producto);
-            if ($id != 0)
-                $this->view->response("El comentario se agregó con id = $id", 200);
-            else
-                $this->view->response("El comentario no se agregó", 500);
+    
+        function create($params = []){
+            //valido si esta logueado y si es admin
+            $user = $this->authHelper->currentUser();
+            if(!$user){
+                $this->view->response('Unauthorized', 401);
+                return;
+            }
+            
+            if($user->role!='ADMIN'){
+                $this->view->response('Forbidden', 403);
+                return;
+            }
+            $body = $this->getData();
+            $descripcion = $body->descripcion;
+            $id_cerveza = $body->id_cerveza;
+
+            if (empty($descripcion) || empty($id_estilo)) {
+                $this->view->response("Complete los datos", 400);
+            }else{
+                $id = $this->model->addComentario($descripcion,$id_cerveza);
+
+                //devuelvo el recurso creado.
+                $comentario = $this->model->getComentario($id);
+                $this->view->response($comentario, 201);
+            }
         }
 
     }
