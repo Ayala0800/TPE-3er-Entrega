@@ -5,6 +5,8 @@ class BeerModel extends Model{
 
     //DEVUELVE TODOS LOS cervezas AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
     function getCervezas($parametros = []){
+        /*$page = isset($parametros['page']) ? $parametros['page'] : 1;
+        $perPage = isset($parametros['perPage']) ? $parametros['perPage'] : 10;*/
 
         $sort = isset($parametros['sort']) ? $parametros['sort'] : 'id_cerveza'; //valor x default
         $order = isset($parametros['order']) ? strtoupper($parametros['order']) : 'ASC'; //valor x default
@@ -14,10 +16,13 @@ class BeerModel extends Model{
             $sort = 'id_cerveza';
         }
 
+       // $offset = ($page - 1) * $perPage;
+
         $sentence = $this->db->prepare(
             "SELECT cervezas.*, estilos.nombre AS estilo
             FROM cervezas
-            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo ORDER BY $sort $order");
+            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo
+            ORDER BY $sort $order");
         $sentence->execute();
         $cervezas = $sentence->fetchAll(PDO::FETCH_OBJ);
         return $cervezas;

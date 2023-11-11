@@ -23,16 +23,15 @@
             if (isset($_GET['order'])){
                 $parametros['order'] = $_GET['order'];
             }
+            /*
+            //paginacion
+            $page = isset($params[':page']) ? $params[':page'] : 1;
+            $perPage = isset($params[':perPage']) ? $params[':perPage'] : 10;
 
+            $parametros['page'] = $page;
+            $parametros['perPage'] = $perPage;*/
 
             if (empty($params)){ //si no hay parametro (algun id), muestra todas.
-                /* filtrar
-                $filterPending = false;
-                if(isset($_GET['pending'])){
-                    $filterPending = $_GET['pending'] == 'true';
-                }
-                */
-
                 $cervezas = $this->model->getCervezas($parametros);
                 $this->view->response($cervezas, 200);
             }else{
@@ -84,7 +83,7 @@
                 $this->view->response('Forbidden', 403);
                 return;
             }
-            /*---------------FUNCION DELETE--------------------------- */
+
             $id = $params[':ID'];
             $cerveza = $this->model->getCerveza($params[':ID']);
 
@@ -108,7 +107,7 @@
                 $this->view->response('Forbidden', 403);
                 return;
             }
-            /*---------------FUNCION CREATE--------------------------- */
+
             $body = $this->getData();
 
             $nombre = $body->nombre;
@@ -141,7 +140,6 @@
                 $this->view->response('Forbidden', 403);
                 return;
             }
-            /*---------------FUNCION UPDATE--------------------------- */
             $id = $params[':ID'];
             $cerveza = $this->model->getCerveza($params[':ID']);
 
@@ -157,7 +155,7 @@
                 $this->model->updateCerveza($nombre, $ibu, $alc, $id_estilo, $stock, $descripcion, $id);
                 $this->view->response('la cerveza con el id='.$id.' ha sido modificada.', 200);
             }else{
-                $this->view->response('la cerveza con el id='.$id.'no existe.', 404);
+                $this->view->response('la cerveza con el id= '.$id.' no existe.', 404);
             }
         }
     }

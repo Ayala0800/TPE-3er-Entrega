@@ -103,7 +103,7 @@ class EstilosApiController extends ApiController{
             $this->model->updateEstilo($nombre, $id);
             $this->view->response('El estilo con el id='.$id.' ha sido modificado.', 200);
         }else{
-            $this->view->response('El estilo con el id='.$id.'no existe.', 404);
+            $this->view->response('El estilo con el id = '.$id.' no existe.', 404);
         }
     }
 

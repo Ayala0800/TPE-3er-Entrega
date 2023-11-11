@@ -6,7 +6,7 @@ class ComentariosModel extends Model{
         $sort = isset($parametros['sort']) ? $parametros['sort'] : 'id_comentario'; //valor x default
         $order = isset($parametros['order']) ? strtoupper($parametros['order']) : 'ASC'; //valor x default
 
-        $validColumns = ['id_comentario', 'descripcion', 'id_cerveza'];
+        $validColumns = ['id_comentario', 'detalle', 'id_cerveza'];
         if(!in_array($sort, $validColumns)){
             $sort = 'id_comentario';
         }
@@ -21,10 +21,13 @@ class ComentariosModel extends Model{
     }
 
     function getComentario($id_comentario){
-        $sentence = $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario=?");
+        $sentence = $this->db->prepare("SELECT comentarios.*, cervezas.nombre AS cerveza
+        FROM comentarios
+        JOIN cervezas ON comentarios.id_cerveza = cervezas.id_cerveza
+        WHERE id_comentario=?");
         $sentence->execute(array($id_comentario));
-        $comment = $sentence->fetch(PDO::FETCH_OBJ);
-        return $comment;
+        $comentario = $sentence->fetch(PDO::FETCH_OBJ);
+        return $comentario;
     }
 
     function deleteComentario($id_comentario){
@@ -33,10 +36,15 @@ class ComentariosModel extends Model{
         return $sentence->rowCount();
     }
 
-    function addComentario($descripcion, $id_cerveza){
-        $sentence = $this->db->prepare("INSERT INTO comentarios(descripcion,id_cerveza) VALUES(?,?)");
-        $sentence->execute(array($descripcion, $id_cerveza));
+    function addComentario($detalle, $id_cerveza){
+        $sentence = $this->db->prepare("INSERT INTO comentarios(detalle,id_cerveza) VALUES(?,?)");
+        $sentence->execute(array($detalle, $id_cerveza));
         return $this->db->lastInsertId();
+    }
+
+    function updateComentario($detalle, $id_cerveza, $id){
+        $sentence = $this->db->prepare('UPDATE comentarios SET detalle = ?, id_cerveza = ? WHERE id_comentario = ?');
+        $sentence->execute([$detalle, $id_cerveza, $id]);
     }
 
 }

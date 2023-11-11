@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2023 a las 02:04:38
+-- Tiempo de generación: 11-11-2023 a las 21:23:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,12 +42,26 @@ CREATE TABLE `cervezas` (
 --
 
 INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stock`, `descripcion`) VALUES
+(1, 'Old Ale', 19, 7.5, 5, 50, 'De color granate, gran cuerpo y espiritu apartado por un blend de 6 maltas caramelizadas. Su perfil maltoso, alicorado y dulzon, con notas de vainilla y un reposo de madurador de 60 dias , hacen de esta una cerveza de gran cuerpo'),
 (2, 'Sureña', 28, 5, 6, 30, 'A base de maltas caramelizadas que le otrogan un profundo , pero cristalino tono ambár con reflejos rojiizos. Cristalina y profunda como los lagos del sur argentino  '),
-(3, 'Nitro Stout', 38, 6.5, 4, 50, 'Cerveza robusta, con mucho cuerpo y mayor densidad. Color petroleo, otrogado por la utilizacion de maltas tostadas en su elaboracion. Cerveza torrada, con sabores a cafe y madera'),
 (4, 'Raices', 32, 4, 1, 50, 'Una pale ale de estilo americano con un 100% de lupulo Victoria cosechado en El bolson que le aporta notas a Maracuya y Mandarina y con adicion de ralladura de raiz de Jengibre en el whirlpool, es por eso que decimos que es un GINGER PALE ALE'),
 (5, 'Colonia Suiza', 21, 7, 3, 20, 'Cerveza rubia de gran cuerpo y complejidad en boca enriquecida, gracias al caracter especiado y el perfil espirituoso de las bayas de enebro silvestres'),
 (6, 'IPA', 56, 5, 2, 60, 'Predominio de maltas caramelizadas. Caracter intenso debido a la cantidad de lúpulo que la compone. De amargor bien marcado'),
-(7, 'Old Ale', 38, 7, 5, 8, 'De color granate, gran cuerpo y espiritu aportado por un blend de 6 maltas caramelizadas.');
+(15, 'Lucas', 55, 22, 2, 12, 'Probando metodo PUT para update'),
+(16, 'pruebita', 52, 43, 1, 7, 'Probando metodo POST'),
+(19, 'messi', 8, 1, 2, 22, 'goat'),
+(20, 'LA', 33, 12, 4, 6, 'rica'),
+(21, 'paginando1', 22, 33, 3, 45, 'relleno1'),
+(22, 'paginando2', 22, 33, 3, 45, 'relleno2'),
+(23, 'paginando3', 22, 33, 3, 45, 'relleno3'),
+(24, 'paginando4', 22, 33, 3, 45, 'relleno4'),
+(25, 'paginando5', 22, 33, 3, 45, 'relleno5'),
+(26, 'paginando6', 22, 33, 3, 45, 'relleno6'),
+(27, 'paginando7', 22, 33, 3, 45, 'relleno7'),
+(28, 'paginando8', 22, 33, 3, 45, 'relleno8'),
+(29, 'paginando9', 22, 33, 3, 45, 'relleno9'),
+(30, 'paginando10', 22, 33, 3, 45, 'relleno10'),
+(31, 'paginando11', 22, 33, 3, 45, 'relleno11');
 
 -- --------------------------------------------------------
 
@@ -56,18 +70,18 @@ INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stoc
 --
 
 CREATE TABLE `comentarios` (
-  `id_comentario` int(45) NOT NULL,
-  `descripcion` varchar(400) NOT NULL,
-  `id_cerveza` int(11) NOT NULL,
-  `fecha_hora` datetime NOT NULL
+  `id_comentario` int(11) NOT NULL,
+  `detalle` varchar(255) NOT NULL,
+  `id_cerveza` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `comentarios`
 --
 
-INSERT INTO `comentarios` (`id_comentario`, `descripcion`, `id_cerveza`, `fecha_hora`) VALUES
-(1, 'Muy rica!', 4, '0000-00-00 00:00:00');
+INSERT INTO `comentarios` (`id_comentario`, `detalle`, `id_cerveza`) VALUES
+(2, 'editando dlasdlasdasfasfsaf', 2),
+(3, 'piola', 2);
 
 -- --------------------------------------------------------
 
@@ -86,10 +100,12 @@ CREATE TABLE `estilos` (
 
 INSERT INTO `estilos` (`id_estilo`, `nombre`) VALUES
 (1, 'Ginger pale ale'),
+(2, 'IPA (india pale ale)'),
 (3, 'Golden Ale'),
 (4, 'Stout'),
+(5, 'Blend'),
 (6, 'Amber Ale'),
-(7, 'Blond Ale');
+(11, 'editado');
 
 -- --------------------------------------------------------
 
@@ -110,7 +126,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `contraseña`, `rol`) VALUES
-(10, 'admin', 'admin@gmail.com', '$2y$10$x4oOMRTpOlKWFauBFOZ62uNixivfwQLgA4kY1q6eSLELuzGqlfg12', 2);
+(10, 'admin', 'admin@gmail.com', '$2y$10$x4oOMRTpOlKWFauBFOZ62uNixivfwQLgA4kY1q6eSLELuzGqlfg12', 2),
+(11, 'Agustina', 'agustina@gmail.com', '$2y$10$5u/7jO1jhqA0y.oezTwV8O31OXy0aAELZ4XL4WBCagIhY6TUdHQw.', 1),
+(13, 'Lucas', 'lucasayala0800@gmail.com', '$2y$10$pprcw1oMmXlQ78nZU/AWWeZI4w0SCrCjX8LGEJjr3CoQgdeyTyk/O', 1);
 
 --
 -- Índices para tablas volcadas
@@ -120,8 +138,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `contraseña`, `rol`) V
 -- Indices de la tabla `cervezas`
 --
 ALTER TABLE `cervezas`
-  ADD PRIMARY KEY (`id_cerveza`) USING BTREE,
-  ADD KEY `id_estilo` (`id_estilo`);
+  ADD PRIMARY KEY (`id_cerveza`),
+  ADD KEY `estilo_id` (`id_estilo`);
 
 --
 -- Indices de la tabla `comentarios`
@@ -150,25 +168,41 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `cervezas`
 --
 ALTER TABLE `cervezas`
-  MODIFY `id_cerveza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_cerveza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `estilos`
 --
 ALTER TABLE `estilos`
-  MODIFY `id_estilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_estilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `cervezas`
+--
+ALTER TABLE `cervezas`
+  ADD CONSTRAINT `estilo_id` FOREIGN KEY (`id_estilo`) REFERENCES `estilos` (`id_estilo`);
+
+--
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `id_cerveza` FOREIGN KEY (`id_cerveza`) REFERENCES `cervezas` (`id_cerveza`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
