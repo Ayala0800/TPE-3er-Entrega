@@ -10,22 +10,22 @@ _CERVEZAS_
 
     {
 
-	"id_cerveza": 2,
-
-	"nombre": "Sureña",
-
-	"IBU": 28,
-
-	"ALC": 5,
- 
- 	"id_estilo": 6,
-  
-  	"stock": 30,
-   
-   	"descripcion": " ... ",
-    
-    	"estilo": "Amber Ale"
-     
+		"id_cerveza": 2,
+	
+		"nombre": "Sureña",
+	
+		"IBU": 28,
+	
+		"ALC": 5,
+	 
+	 	"id_estilo": 6,
+	  
+	  	"stock": 30,
+	   
+	   	"descripcion": " ... ",
+	    
+	    	"estilo": "Amber Ale"
+	     
      },
 
     
@@ -75,17 +75,17 @@ _COMENTARIOS_
 
 **GET:/comentarios** -> Este Endpoint devuelve la lista de comentarios realizados sobre una cerveza especifica de la base de datos, que se mostraran de esta manera:
 
-|{
+	{
         
- 	"id_comentario": 1,
+	 	"id_comentario": 1,
+	 
+	 	"descripcion": "Muy rica!",
+	        
+		"id_cerveza": 4,
+	        
+		"cerveza": "Raices"
  
- 	"descripcion": "Muy rica!",
-        
-	"id_cerveza": 4,
-        
-	"cerveza": "Raices"
- 
- }
+ 	}
 
     
 **GET:/ccomentarios/:ID** -> Este Endpoint devuelve un comentario especifico de la base de datos indicando su ID. Si no se encuentra, devuelve un mensaje tipo: "El comentario con el id=' ' no existe."
