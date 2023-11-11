@@ -7,16 +7,26 @@ _CERVEZAS_
 
 
 **GET:/cervezas** -> Este Endpoint devuelve la lista de cervezas de la base de datos, que se mostraran de esta manera:
-	{
-        "id_cerveza": 2,
-        "nombre": "Sureña",
-        "IBU": 28,
-        "ALC": 5,
-        "id_estilo": 6,
-        "stock": 30,
-        "descripcion": "A base de maltas caramelizadas que le otrogan un profundo , pero cristalino tono ambár con reflejos rojiizos. Cristalina y profunda como los lagos del sur argentino  ",
-        "estilo": "Amber Ale"
-    },
+
+    {
+
+	"id_cerveza": 2,
+
+	"nombre": "Sureña",
+
+	"IBU": 28,
+
+	"ALC": 5,
+ 
+ 	"id_estilo": 6,
+  
+  	"stock": 30,
+   
+   	"descripcion": " ... ",
+    
+    	"estilo": "Amber Ale"
+     
+     },
 
     
 **POST:/cervezas** -> Este endpoint crea una nueva cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
