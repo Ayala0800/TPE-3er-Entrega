@@ -3,7 +3,7 @@ Integrantes : Agustina Quinteros (21agustinaa@gmail.com) - Lucas Ayala (lucasaya
 ## ENDPOINTS 
 
 
-###CERVEZAS
+_CERVEZAS_
 
 
 **GET:/cervezas** -> Este Endpoint devuelve la lista de cervezas de la base de datos, que se mostraran de esta manera:
@@ -33,7 +33,7 @@ devuelve un mensaje tipo: "La cerveza con el id=' ' no existe."
 
 
 
-###ESTILOS
+_ESTILOS_
 
 
 **GET:/estilos** -> Este Endpoint devuelve la lista de estilos de la base de datos, que se mostraran de esta manera:
@@ -43,7 +43,7 @@ devuelve un mensaje tipo: "La cerveza con el id=' ' no existe."
     }
 
     
-**POST:/estilos** -> Este endpoint agrega un nuevo estilo de cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
+** +POST:/estilos** -> Este endpoint agrega un nuevo estilo de cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
 
 
 **GET:/estilos/:ID** -> Este Endpoint devuelve un estilo de cerveza especifico de la base de datos indicando su ID. Si no se encuentra
@@ -56,7 +56,7 @@ devuelve un mensaje tipo: "El estilo con el id=' ' no existe."
 **DELETE:/estilos/:ID** -> Este endpoint elimina un estilo de cerveza especificando su ID. Si este existe, devuelve un mensaje tipo: "El estilo con el id=' ' ha sido borrado.". Caso contrario, devuelve un mensaje tipo: "El estilo con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
 
 
-###COMENTARIOS
+_COMENTARIOS_
 
 
 **GET:/comentarios** -> Este Endpoint devuelve la lista de comentarios realizados sobre una cerveza especifica de la base de datos, que se mostraran de esta manera:
