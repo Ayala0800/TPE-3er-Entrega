@@ -14,15 +14,16 @@
         }
 
         function get($params = []){
-            $parametros = [];
-
-            if (isset($_GET['sort'])){
-                $parametros['sort'] = $_GET['sort'];
-            }
-
-            if (isset($_GET['order'])){
-                $parametros['order'] = $_GET['order'];
-            }
+            if (empty($params)){ //si no hay parametro (algun id), muestra todas.
+                $order = isset($_GET['order']) ? strtoupper($_GET['order']) : 'ASC';
+                $field = isset($_GET['field']) ? strtolower($_GET['field']) : 'id_cerveza';
+                $filterBy = isset($_GET['filterBy']) ? strtolower($_GET['filterBy']) : 'null';
+                $filterValue = isset($_GET['filterValue']) ? ucfirst($_GET['filterValue']) : 'null';
+                $limit = isset($_GET['limit']) ? ($_GET['limit']) : 'null';
+                $offset = isset($_GET['offset']) ? ($_GET['offset']) : 'null';
+                
+                $cervezas = $this->model->getCervezas($order, $field, $filterBy, $filterValue, $limit, $offset);
+                $this->view->response($cervezas, 200);    
             /*
             //paginacion
             $page = isset($params[':page']) ? $params[':page'] : 1;
@@ -30,10 +31,6 @@
 
             $parametros['page'] = $page;
             $parametros['perPage'] = $perPage;*/
-
-            if (empty($params)){ //si no hay parametro (algun id), muestra todas.
-                $cervezas = $this->model->getCervezas($parametros);
-                $this->view->response($cervezas, 200);
             }else{
                 $cerveza = $this->model->getCerveza($params[':ID']);
                 if (!empty($cerveza)){

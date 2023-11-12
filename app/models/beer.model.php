@@ -3,33 +3,41 @@ require_once 'app/models/model.php';
 require_once 'config.php';
 class BeerModel extends Model{
 
-    //DEVUELVE TODOS LOS cervezas AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
-    function getCervezas($parametros = []){
-        /*$page = isset($parametros['page']) ? $parametros['page'] : 1;
-        $perPage = isset($parametros['perPage']) ? $parametros['perPage'] : 10;*/
+    //DEVUELVE TODOS LAS CERVEZAS AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
+    function getCervezas($order, $field, $filterBy, $filterValue, $limit, $offset){
+        $sql = "SELECT cervezas.*, estilos.nombre AS estilo 
+        FROM cervezas
+        JOIN estilos 
+        ON cervezas.id_estilo = estilos.id_estilo";
 
-        $sort = isset($parametros['sort']) ? $parametros['sort'] : 'id_cerveza'; //valor x default
-        $order = isset($parametros['order']) ? strtoupper($parametros['order']) : 'ASC'; //valor x default
-    
-        $validColumns = ['id_cerveza', 'nombre', 'IBU', 'ALC', 'id_estilo', 'stock', 'descripcion', 'estilo'];
-        if(!in_array($sort, $validColumns)){
-            $sort = 'id_cerveza';
+        switch($filterBy){
+            case 'IBU': $sql .= ' WHERE IBU = ' . '\''. $filterValue.'\'';
+                break;
+            case 'ALC': $sql .= ' WHERE ALC = ' . '\''. $filterValue.'\'';
+                break;
+            default: $sql .= ' ';
+                break;
         }
-
-       // $offset = ($page - 1) * $perPage;
-
-        $sentence = $this->db->prepare(
-            "SELECT cervezas.*, estilos.nombre AS estilo
-            FROM cervezas
-            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo
-            ORDER BY $sort $order");
+        switch($order){
+            case 'ASC': $sql .= ' ORDER BY ' . $field . ' ASC';
+                break;
+            case 'DESC': $sql .= ' ORDER BY ' . $field . ' DESC';
+                break;
+            default: $sql .= ' ORDER BY id_cerveza ASC';
+                break;
+        }
+        if($limit != 'null'){
+            $sql .= ' LIMIT ' . $limit;
+        }
+        if($offset != 'null'){
+            $sql .= ' OFFSET ' . $offset;
+        }
+        $sentence = $this->db->prepare($sql);
         $sentence->execute();
-        $cervezas = $sentence->fetchAll(PDO::FETCH_OBJ);
-        return $cervezas;
+        return $sentencey->fetchAll(PDO::FETCH_OBJ);
     }
-
    
-    //DEVUELVE EL PORDUCTO CON EL ID PASADO POR PARAMETRO
+    //DEVUELVE LA CERVEZA CON EL ID PASADO POR PARAMETRO
     function getCerveza($id_cerveza){
         $sentence = $this->db->prepare(
             "SELECT cervezas.*, estilos.nombre AS estilo
@@ -41,7 +49,7 @@ class BeerModel extends Model{
         return $cerveza;
     }
 
-    //DEVUELVE LOS cervezaS PERTENECIENTES A LA CATEGORIA PASADA POR PARAMETRO
+    //DEVUELVE LAS CERVEZAS PERTENECIENTES A LA CATEGORIA PASADA POR PARAMETRO
     function getCervezasEstilo($id_estilo){
         $sentence = $this->db->prepare(
             "SELECT cervezas.*, estilos.nombre AS estilo

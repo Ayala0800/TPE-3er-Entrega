@@ -1,9 +1,16 @@
 # TPE-3er-Entrega
 Integrantes : Agustina Quinteros (21agustinaa@gmail.com) - Lucas Ayala (lucasayala0800@gmail.com) 
+
+
+En este trabajo se realiza una API REST (RESTful) donde se permite listar todas las cervezas y estilos de cervezas disponibles en la db, como tambien editar, eliminar y crear cervezas y estilos. Tambien se permite buscar una cerveza o estilo especifico mediante su ID.
+Ademas, se permite hacer una busqueda *filtrada* por un campo y *orden* (ASC ó DESC) especifico (el orden por defecto es de manera ASC por id_cerveza)
+
+Ejemplo: **http://localhost/WEB2/API/api/cervezas?field=estilo&order=DESC**
+
 ## ENDPOINTS 
 
-
 _CERVEZAS_
+
 
 
 **GET:/cervezas** -> Este Endpoint devuelve la lista de cervezas de la base de datos, que se mostraran de esta manera:
@@ -88,7 +95,7 @@ _COMENTARIOS_
  	}
 
     
-**GET:/ccomentarios/:ID** -> Este Endpoint devuelve un comentario especifico de la base de datos indicando su ID. Si no se encuentra, devuelve un mensaje tipo: "El comentario con el id=' ' no existe."
+**GET:/comentarios/:ID** -> Este Endpoint devuelve un comentario especifico de la base de datos indicando su ID. Si no se encuentra, devuelve un mensaje tipo: "El comentario con el id=' ' no existe."
 
 
 **DELETE:/comentarios/:ID** -> Este endpoint elimina un comentario de cerveza especificando su ID. Si este existe, devuelve un mensaje tipo: "El comentario con el id=' ' ha sido borrado.". Caso contrario, devuelve un mensaje tipo: "El comentario con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
