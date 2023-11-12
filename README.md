@@ -11,7 +11,6 @@ Ejemplo: **http://localhost/WEB2/API/api/cervezas?field=estilo&order=DESC**
 
 _CERVEZAS_
 
-!(blob:https://web.whatsapp.com/022e4f76-020e-4ee3-88a1-6d0620b1cc8c)
 
 
 **GET:/cervezas** -> Este Endpoint devuelve la lista de cervezas de la base de datos, que se mostraran de esta manera:
