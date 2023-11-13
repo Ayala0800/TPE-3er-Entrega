@@ -225,11 +225,8 @@ Ejemplo de request:
 
 ### _FILTRAR_
 
-<<<<<<< HEAD
+
 *Ruta de ejemplo para Filtrar cervezas*=
-=======
-*Ruta de ejemplo para Filtrar*=
->>>>>>> rama01
 
 	http://localhost/WEB2/API/api/cervezas?search_input=IPA
 
