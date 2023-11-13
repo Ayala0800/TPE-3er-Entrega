@@ -28,6 +28,7 @@ class EstiloModel extends Model{
         $sentence->execute([$nombre, $id]);
     }
 
+    //ELIMINA EL ESTILO DE CERVEZA JUNTO CON LA/LAS CERVEZA/S CORRESPONDIENTES, POR DECISIÓN LA CLAVE FORÁNEA ESTA CONFIGURADA CON "ON DELETE CASCADE"
     function deleteEstilo($id){
         $sentence = $this->db->prepare("DELETE FROM estilos WHERE id_estilo = ?");
         $sentence->execute([$id]);
