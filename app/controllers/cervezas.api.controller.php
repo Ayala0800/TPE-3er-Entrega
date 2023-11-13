@@ -79,8 +79,7 @@
                 $this->view->response('Unauthorized', 401);
                 return;
             }
-            
-            if($user->role!='ADMIN'){
+            if($user->rol!=2){
                 $this->view->response('Forbidden', 403);
                 return;
             }
@@ -104,7 +103,7 @@
                 return;
             }
             
-            if($user->role!='ADMIN'){
+            if($user->rol!=2){
                 $this->view->response('Forbidden', 403);
                 return;
             }
@@ -131,14 +130,13 @@
         }
 
         function update($params = []){
-            //valido si esta logueado y si es admin
             $user = $this->authHelper->currentUser();
             if(!$user){
                 $this->view->response('Unauthorized', 401);
                 return;
             }
             
-            if($user->role!='ADMIN'){
+            if($user->rol!=2){
                 $this->view->response('Forbidden', 403);
                 return;
             }

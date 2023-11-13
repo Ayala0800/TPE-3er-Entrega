@@ -22,7 +22,7 @@ class UserApiController extends ApiController{
             return;
         }
 
-        $basic = explode(" ", $basic); //["Basic", "base64(usr:pass)"]
+        $basic = explode(" ", $basic); // lo separa dejandolo como un arreglo con valores => ["Basic", "base64(usr:pass)"]
 
         if($basic[0]!="Basic"){
             $this->view->response('Los encabezados de autenticación son incorrectos.', 401);
@@ -35,13 +35,13 @@ class UserApiController extends ApiController{
         $user = $userpass[0];
         $pass = $userpass[1];
 
-        $usuario = $this->model->getUser($user);
+        $userdata = $this->model->getUser($user);
 
-        $usuarioDatos = [ "nombre" => $user];
+        ///$usuarioDatos = [ "nombre" => $user,"rol" => $usuario->rol];
 
-        if($usuario && password_verify($pass, $usuario->contraseña)){
+        if($user == $userdata->nombre && password_verify($pass, $userdata->contraseña)){
             // usuario es valido, le retorno un token de accesso
-            $token = $this->authHelper->createToken($usuarioDatos);
+            $token = $this->authHelper->createToken($userdata);
             $this->view->response($token);
         }else{
             $this->view->response('El usuario o contraseña son incorrectos.', 401);

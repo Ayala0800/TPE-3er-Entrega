@@ -63,13 +63,14 @@
         }
 
         function delete($params = []){
-           $user = $this->authHelper->currentUser();
+            //valido si esta logueado y si es admin
+            $user = $this->authHelper->currentUser();
             if(!$user){
                 $this->view->response('Unauthorized', 401);
                 return;
             }
             
-            if($user->role!='ADMIN'){
+            if($user->rol!=2){
                 $this->view->response('Forbidden', 403);
                 return;
             }
@@ -87,6 +88,18 @@
         }
 
         function create($params = null){
+            //valido si esta logueado y si es admin
+            $user = $this->authHelper->currentUser();
+            if(!$user){
+                $this->view->response('Unauthorized', 401);
+                return;
+            }
+            
+            if($user->rol!=2){
+                $this->view->response('Forbidden', 403);
+                return;
+            }
+
             $body = $this->getData();
 
             $detalle = $body->detalle;
@@ -112,7 +125,7 @@
                 return;
             }
             
-            if($user->role!='ADMIN'){
+            if($user->rol!=2){
                 $this->view->response('Forbidden', 403);
                 return;
             }

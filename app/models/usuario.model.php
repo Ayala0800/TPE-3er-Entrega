@@ -1,14 +1,8 @@
 <?php
 require_once 'config.php';
-class UserModel extends Model{
+require_once 'app/models/model.php';
 
-/*
-    function getUserByName($user){
-        $sentence = $this->db->prepare("SELECT * FROM usuarios WHERE nombre=?");
-        $sentence->execute(array($user));
-        $user = $sentence->fetch(PDO::FETCH_OBJ);
-        return $user;
-    }*/
+class UserModel extends Model{
 
     public function getUser($user) {
         $query = $this->db->prepare('SELECT * FROM usuarios WHERE nombre = ?');

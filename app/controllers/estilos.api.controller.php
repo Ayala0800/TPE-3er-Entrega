@@ -36,8 +36,8 @@ class EstilosApiController extends ApiController{
             $this->view->response('Unauthorized', 401);
             return;
         }
-        
-        if($user->role!='ADMIN'){
+            
+        if($user->rol!=2){
             $this->view->response('Forbidden', 403);
             return;
         }
@@ -63,11 +63,12 @@ class EstilosApiController extends ApiController{
             $this->view->response('Unauthorized', 401);
             return;
         }
-        
-        if($user->role!='ADMIN'){
+            
+        if($user->rol!=2){
             $this->view->response('Forbidden', 403);
             return;
         }
+
         $id = $params[':ID'];
         $estilo = $this->model->getEstilo($params[':ID']);
 
@@ -86,8 +87,8 @@ class EstilosApiController extends ApiController{
             $this->view->response('Unauthorized', 401);
             return;
         }
-                
-        if($user->role!='ADMIN'){
+            
+        if($user->rol!=2){
             $this->view->response('Forbidden', 403);
             return;
         }
