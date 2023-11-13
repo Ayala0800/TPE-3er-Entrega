@@ -9,8 +9,7 @@ Ademas, se permite hacer una busqueda *filtrada* por un campo y *orden* (ASC ó 
 ## ENDPOINTS 
 
 
-##CERVEZAS
-
+### _CERVEZAS_
 
 **GET:/cervezas** -> Este Endpoint devuelve la lista de cervezas de la base de datos, que se mostraran de esta manera:
 
@@ -91,9 +90,7 @@ Ejemplo de request:
 
 
 
-##ESTILOS
-
-
+### _ESTILOS_
 
 **GET:/estilos** -> Este Endpoint devuelve la lista de estilos de la base de datos, que se mostraran de esta manera:
 
@@ -160,9 +157,7 @@ Ejemplo de request:
 
 
 
-##COMENTARIOS
-
-
+### _COMENTARIOS_
 
 **GET:/comentarios** -> Este Endpoint devuelve la lista de comentarios realizados sobre una cerveza especifica de la base de datos, que se mostraran de esta manera:
 
@@ -213,8 +208,7 @@ Ejemplo de request:
 
 
 
-##PAGINAR
-
+### _PAGINAR_
 
 *Ruta de ejemplo para Paginar*
 
@@ -226,8 +220,7 @@ Ejemplo de request:
 
 
 
-##FILTRAR
-
+### _FILTRAR_
 
 *Ruta de ejemplo para Filtrar*=
 
@@ -270,5 +263,5 @@ Ejemplo de devolución:
 	} ]
 
 
- ##ORDENAR
+ ### _ORDENAR_
 
