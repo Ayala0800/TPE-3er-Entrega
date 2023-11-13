@@ -3,31 +3,29 @@ require_once 'app/models/model.php';
 require_once 'config.php';
 class BeerModel extends Model{
 
-    //DEVUELVE TODOS LOS cervezaS AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
-    function getCervezas(){
-        $sentence = $this->db->prepare(
-            "SELECT cervezas.*, estilos.nombre AS estilo
-            FROM cervezas
-            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo");
-        $sentence->execute();
-        $cervezas = $sentence->fetchAll(PDO::FETCH_OBJ);
+    public function getCervezas($input, $query_order, $per_page, $start_index, $sorted_by)
+    {
+        $limit = intval($per_page);
+        $offset = intval($start_index);
+
+        $query = $this->db->prepare("SELECT Cervezas.*, estilos.nombre AS estilo FROM cervezas JOIN estilos ON cervezas.id_estilo = estilos.id_estilo WHERE cervezas.nombre LIKE ? ORDER BY {$sorted_by} {$query_order} LIMIT {$limit} OFFSET {$offset}");
+        $query->execute(["%$input%"]);
+        $cervezas = $query->fetchAll(PDO::FETCH_OBJ);
         return $cervezas;
     }
 
-   
-    //DEVUELVE EL PORDUCTO CON EL ID PASADO POR PARAMETRO
-    function getCerveza($id_cerveza){
-        $sentence = $this->db->prepare(
-            "SELECT cervezas.*, estilos.nombre AS estilo
-            FROM cervezas
-            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo
-            WHERE id_cerveza=?");
-        $sentence->execute(array($id_cerveza));
-        $cerveza = $sentence->fetch(PDO::FETCH_OBJ);
+    public function getCervezaById($id)
+    {
+        $query = $this->db->prepare('SELECT cervezas.*, estilos.nombre AS estilo
+        FROM cervezas
+        JOIN estilos ON cervezas.id_estilo = estilos.id_estilo
+        WHERE id_cerveza=?');
+        $query->execute([$id]);
+        $cerveza = $query->fetch(PDO::FETCH_OBJ);
         return $cerveza;
     }
 
-    //DEVUELVE LOS cervezaS PERTENECIENTES A LA CATEGORIA PASADA POR PARAMETRO
+    //DEVUELVE LAS CERVEZAS PERTENECIENTES A LA CATEGORIA PASADA POR PARAMETRO
     function getCervezasEstilo($id_estilo){
         $sentence = $this->db->prepare(
             "SELECT cervezas.*, estilos.nombre AS estilo

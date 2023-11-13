@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2023 a las 02:23:27
+-- Tiempo de generación: 13-11-2023 a las 19:55:50
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -49,7 +49,24 @@ INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stoc
 (6, 'IPA', 56, 5, 2, 60, 'Predominio de maltas caramelizadas. Caracter intenso debido a la cantidad de lúpulo que la compone. De amargor bien marcado'),
 (15, 'Lucas', 55, 22, 2, 12, 'Probando metodo PUT para update'),
 (16, 'pruebita', 52, 43, 1, 7, 'Probando metodo POST'),
-(19, 'messi', 8, 1, 2, 22, 'goat');
+(19, 'messi', 8, 1, 2, 22, 'goat'),
+(20, 'LA', 33, 12, 4, 6, 'rica'),
+(22, 'paginando2', 22, 33, 3, 45, 'relleno2'),
+(23, 'paginando3', 22, 33, 3, 45, 'relleno3'),
+(24, 'paginando4', 22, 33, 3, 45, 'relleno4'),
+(25, 'paginando5', 22, 33, 3, 45, 'relleno5'),
+(26, 'paginando6', 22, 33, 3, 45, 'relleno6'),
+(27, 'paginando7', 22, 33, 3, 45, 'relleno7'),
+(28, 'paginando8', 22, 33, 3, 45, 'relleno8'),
+(29, 'paginando9', 22, 33, 3, 45, 'relleno9'),
+(30, 'paginando10', 22, 33, 3, 45, 'relleno10'),
+(31, 'paginando11', 22, 33, 3, 45, 'relleno11'),
+(32, 'Red IPA', 12, 15, 2, 33, 'prueba'),
+(33, 'Black IPA', 12, 15, 2, 33, 'prueba'),
+(34, 'Golden IPA', 12, 15, 2, 33, 'prueba'),
+(35, 'Premium IPA', 12, 15, 1, 33, 'prueba'),
+(36, 'agregando', 77, 44, 1, 55, 'agregando mediante post'),
+(37, 'modificando', 8, 9, 1, 44, 'modificando mediante PUT2');
 
 -- --------------------------------------------------------
 
@@ -59,15 +76,32 @@ INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stoc
 
 CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
-  `detalle` varchar(255) NOT NULL
+  `detalle` varchar(255) NOT NULL,
+  `id_cerveza` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `comentarios`
 --
 
-INSERT INTO `comentarios` (`id_comentario`, `detalle`) VALUES
-(1, 'agradable sabor.');
+INSERT INTO `comentarios` (`id_comentario`, `detalle`, `id_cerveza`) VALUES
+(2, 'editando dlasdlasdasfasfsaf', 2),
+(3, 'piola', 2),
+(6, 'comentario relleno 1', 20),
+(7, 'comentario relleno 2', 20),
+(8, 'comentario relleno 2', 20),
+(10, 'comentario relleno 4', 20),
+(11, 'comentario relleno 4', 20),
+(12, 'editando mediante PUT', 22),
+(13, 'comentario relleno 6', 20),
+(14, 'comentario relleno 7', 20),
+(15, 'comentario relleno 8', 20),
+(16, 'comentario relleno 6', 20),
+(17, 'comentario relleno 4', 20),
+(18, 'comentario relleno 5', 20),
+(19, 'comentario relleno 3', 20),
+(20, 'comentario relleno 5', 20),
+(21, 'editando dlasdlasdasfasfsaf', 22);
 
 -- --------------------------------------------------------
 
@@ -91,7 +125,8 @@ INSERT INTO `estilos` (`id_estilo`, `nombre`) VALUES
 (4, 'Stout'),
 (5, 'Blend'),
 (6, 'Amber Ale'),
-(11, 'editado');
+(11, 'editado'),
+(12, 'modificando con PUT');
 
 -- --------------------------------------------------------
 
@@ -112,9 +147,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `contraseña`, `rol`) VALUES
-(10, 'admin', 'admin@gmail.com', '$2y$10$x4oOMRTpOlKWFauBFOZ62uNixivfwQLgA4kY1q6eSLELuzGqlfg12', 2),
-(11, 'Agustina', 'agustina@gmail.com', '$2y$10$5u/7jO1jhqA0y.oezTwV8O31OXy0aAELZ4XL4WBCagIhY6TUdHQw.', 1),
-(13, 'Lucas', 'lucasayala0800@gmail.com', '$2y$10$pprcw1oMmXlQ78nZU/AWWeZI4w0SCrCjX8LGEJjr3CoQgdeyTyk/O', 1);
+(10, 'admin', 'admin@gmail.com', '$2y$10$x4oOMRTpOlKWFauBFOZ62uNixivfwQLgA4kY1q6eSLELuzGqlfg12', 2);
 
 --
 -- Índices para tablas volcadas
@@ -124,13 +157,15 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `contraseña`, `rol`) V
 -- Indices de la tabla `cervezas`
 --
 ALTER TABLE `cervezas`
-  ADD PRIMARY KEY (`id_cerveza`);
+  ADD PRIMARY KEY (`id_cerveza`),
+  ADD KEY `estilo_id` (`id_estilo`);
 
 --
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id_comentario`);
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `id_cerveza` (`id_cerveza`);
 
 --
 -- Indices de la tabla `estilos`
@@ -152,25 +187,41 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `cervezas`
 --
 ALTER TABLE `cervezas`
-  MODIFY `id_cerveza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_cerveza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `estilos`
 --
 ALTER TABLE `estilos`
-  MODIFY `id_estilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_estilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `cervezas`
+--
+ALTER TABLE `cervezas`
+  ADD CONSTRAINT `estilo_id` FOREIGN KEY (`id_estilo`) REFERENCES `estilos` (`id_estilo`);
+
+--
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `id_cerveza` FOREIGN KEY (`id_cerveza`) REFERENCES `cervezas` (`id_cerveza`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
