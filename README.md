@@ -206,6 +206,10 @@ Ejemplo de request:
 	POST localhost/WEB2/API/api/comentarios
 
 
+### _USUARIOS_
+
+**GET:/user/token** -> Este endpoint genera un Token para que el administrador realice peticiones _PUT_/_POST_/_DELETE_
+
 
 ### _PAGINAR_
 
