@@ -8,8 +8,7 @@ Ademas, se permite hacer una busqueda *filtrada* por un campo y *orden* (ASC ó 
 
 ## ENDPOINTS 
 
-_CERVEZAS_
-
+###_CERVEZAS_
 
 
 **GET:/cervezas** -> Este Endpoint devuelve la lista de cervezas de la base de datos, que se mostraran de esta manera:
@@ -90,7 +89,7 @@ Ejemplo de request:
 	DELETE localhost/WEB2/API/api/cervezas/5
 
 
-_ESTILOS_
+###_ESTILOS_
 
 
 **GET:/estilos** -> Este Endpoint devuelve la lista de estilos de la base de datos, que se mostraran de esta manera:
