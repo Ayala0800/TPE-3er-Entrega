@@ -35,16 +35,16 @@ class UserApiController extends ApiController{
         $user = $userpass[0];
         $pass = $userpass[1];
 
-        $userdata = ["name" => $user, "id" => 123, "role" => 'ADMIN'];//llamar a la BD
+        $usuario = $this->model->getUser($user);
 
-        if($user == "Lucas" && $pass == "web"){
-            //$user && password_verify($password, $user->password)
+        $usuarioDatos = [ "nombre" => $user];
+
+        if($usuario && password_verify($pass, $usuario->contraseña)){
             // usuario es valido, le retorno un token de accesso
-            $token = $this->authHelper->createToken($userdata);
+            $token = $this->authHelper->createToken($usuarioDatos);
             $this->view->response($token);
         }else{
             $this->view->response('El usuario o contraseña son incorrectos.', 401);
         }
-
     }
 }

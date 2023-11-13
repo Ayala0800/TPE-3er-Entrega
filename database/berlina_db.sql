@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2023 a las 17:43:15
+-- Tiempo de generación: 13-11-2023 a las 19:55:50
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -147,9 +147,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `contraseña`, `rol`) VALUES
-(10, 'admin', 'admin@gmail.com', '$2y$10$x4oOMRTpOlKWFauBFOZ62uNixivfwQLgA4kY1q6eSLELuzGqlfg12', 2),
-(11, 'Agustina', 'agustina@gmail.com', '$2y$10$5u/7jO1jhqA0y.oezTwV8O31OXy0aAELZ4XL4WBCagIhY6TUdHQw.', 1),
-(13, 'Lucas', 'lucasayala0800@gmail.com', '$2y$10$pprcw1oMmXlQ78nZU/AWWeZI4w0SCrCjX8LGEJjr3CoQgdeyTyk/O', 1);
+(10, 'admin', 'admin@gmail.com', '$2y$10$x4oOMRTpOlKWFauBFOZ62uNixivfwQLgA4kY1q6eSLELuzGqlfg12', 2);
 
 --
 -- Índices para tablas volcadas
@@ -207,7 +205,7 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
