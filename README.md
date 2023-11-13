@@ -3,7 +3,6 @@ Integrantes : Agustina Quinteros (21agustinaa@gmail.com) - Lucas Ayala (lucasaya
 
 
 En este trabajo se realiza una API REST (RESTful) donde se permite listar todas las cervezas y estilos de cervezas disponibles en la db, como tambien editar, eliminar y crear cervezas y estilos. Tambien se permite buscar una cerveza o estilo especifico mediante su ID.
-Ademas, se permite hacer una busqueda *filtrada* por un campo y *orden* (ASC ó DESC) especifico (el orden por defecto es de manera ASC por id_cerveza)
 
 
 ## ENDPOINTS 
@@ -264,4 +263,15 @@ Ejemplo de devolución:
 
 
  ### _ORDENAR_
+
+Los resultados de la consulta pueden ordenarse según campos y órdenes ("asc" o "desc") especificados mediante los parámetros de consulta sort_by y order.
+
+ *Ruta de ejemplo para Ordenar*=
+
+ 	http://localhost/WEB2/API/api/cervezas?sort_by=IBU&order=0
+
+ - ?sort_by : este parámetro recibe un string que debe corresponder con uno de los campos de la entidad solicitada (el orden por defecto es de manera ASC por id_cerveza).
+
+ - ?order : este parámetro recibe un número entero que puede ser 1 o 0. Si es 1 se ordenará la lista de manera descendiente. De ser 0 o cualquier otro número se ordenara ascendentemente.
+ 
 
