@@ -115,7 +115,7 @@ _PAGINAR_
 
 _FILTRAR_
 
-*Ruta de ejemplo para Filtrar*= http://localhost/WEB2/API/api/cervezas?search_input=IPA
+*Ruta de ejemplo para Filtrar cervezas*= http://localhost/WEB2/API/api/cervezas?search_input=IPA
 
 - ?search_input=nombre: en este caso va a filtrar todas las cervezas que en su nombre contengan el string "IPA".
 
@@ -150,4 +150,24 @@ Ejemplo de devolución:
 	        "stock": 33,
 	        "descripcion": "prueba",
 	        "estilo": "IPA (india pale ale)"
+	}
+
+
+ *Ruta de ejemplo para Filtrar comentarios*= http://localhost/WEB2/API/api/comentarios?search_input=Sureña
+
+- ?search_input=sureña: en este caso va a filtrar todos los comentarios que pretenezca a la cerveza Sureña.
+
+Ejemplo de devolución:
+	    
+     	{
+	        "id_comentario": 2,
+	        "detalle": "cerveza muy agradable en boca, ideal para epocas invernales",
+	        "id_cerveza": 2,
+	        "cerveza": "Sureña"
+	},
+	{
+	        "id_comentario": 3,
+	        "detalle": "riquisima",
+	        "id_cerveza": 2,
+	        "cerveza": "Sureña"
 	}
