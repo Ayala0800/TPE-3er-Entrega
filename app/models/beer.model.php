@@ -50,7 +50,7 @@ class BeerModel extends Model{
         $query->execute([$nombre, $ibu, $alc, $id_estilo, $stock, $descripcion, $id]);
     }
 
-    //ELIMINA una cerveza segun id
+    //ELIMINA LA CERVEZA JUNTO CON LOS COMENTARIOS CORRESPONDIENTES, POR DECISIÓN LA CLAVE FORÁNEA ESTA CONFIGURADA CON "ON DELETE CASCADE"
     function deleteCervezaFromDB($id){
         $sentence = $this->db->prepare("DELETE FROM `cervezas` WHERE id_cerveza=?");
         $sentence->execute([$id]);
