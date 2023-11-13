@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2023 a las 21:23:45
+-- Tiempo de generación: 13-11-2023 a las 17:43:15
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -51,7 +51,6 @@ INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stoc
 (16, 'pruebita', 52, 43, 1, 7, 'Probando metodo POST'),
 (19, 'messi', 8, 1, 2, 22, 'goat'),
 (20, 'LA', 33, 12, 4, 6, 'rica'),
-(21, 'paginando1', 22, 33, 3, 45, 'relleno1'),
 (22, 'paginando2', 22, 33, 3, 45, 'relleno2'),
 (23, 'paginando3', 22, 33, 3, 45, 'relleno3'),
 (24, 'paginando4', 22, 33, 3, 45, 'relleno4'),
@@ -61,7 +60,13 @@ INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stoc
 (28, 'paginando8', 22, 33, 3, 45, 'relleno8'),
 (29, 'paginando9', 22, 33, 3, 45, 'relleno9'),
 (30, 'paginando10', 22, 33, 3, 45, 'relleno10'),
-(31, 'paginando11', 22, 33, 3, 45, 'relleno11');
+(31, 'paginando11', 22, 33, 3, 45, 'relleno11'),
+(32, 'Red IPA', 12, 15, 2, 33, 'prueba'),
+(33, 'Black IPA', 12, 15, 2, 33, 'prueba'),
+(34, 'Golden IPA', 12, 15, 2, 33, 'prueba'),
+(35, 'Premium IPA', 12, 15, 1, 33, 'prueba'),
+(36, 'agregando', 77, 44, 1, 55, 'agregando mediante post'),
+(37, 'modificando', 8, 9, 1, 44, 'modificando mediante PUT2');
 
 -- --------------------------------------------------------
 
@@ -81,7 +86,22 @@ CREATE TABLE `comentarios` (
 
 INSERT INTO `comentarios` (`id_comentario`, `detalle`, `id_cerveza`) VALUES
 (2, 'editando dlasdlasdasfasfsaf', 2),
-(3, 'piola', 2);
+(3, 'piola', 2),
+(6, 'comentario relleno 1', 20),
+(7, 'comentario relleno 2', 20),
+(8, 'comentario relleno 2', 20),
+(10, 'comentario relleno 4', 20),
+(11, 'comentario relleno 4', 20),
+(12, 'editando mediante PUT', 22),
+(13, 'comentario relleno 6', 20),
+(14, 'comentario relleno 7', 20),
+(15, 'comentario relleno 8', 20),
+(16, 'comentario relleno 6', 20),
+(17, 'comentario relleno 4', 20),
+(18, 'comentario relleno 5', 20),
+(19, 'comentario relleno 3', 20),
+(20, 'comentario relleno 5', 20),
+(21, 'editando dlasdlasdasfasfsaf', 22);
 
 -- --------------------------------------------------------
 
@@ -105,7 +125,8 @@ INSERT INTO `estilos` (`id_estilo`, `nombre`) VALUES
 (4, 'Stout'),
 (5, 'Blend'),
 (6, 'Amber Ale'),
-(11, 'editado');
+(11, 'editado'),
+(12, 'modificando con PUT');
 
 -- --------------------------------------------------------
 
@@ -168,19 +189,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `cervezas`
 --
 ALTER TABLE `cervezas`
-  MODIFY `id_cerveza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_cerveza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `estilos`
 --
 ALTER TABLE `estilos`
-  MODIFY `id_estilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_estilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
