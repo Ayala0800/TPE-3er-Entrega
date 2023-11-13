@@ -41,20 +41,33 @@ Ejemplo de request:
     
 **POST:/cervezas** -> Este endpoint crea una nueva cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
 
+	_error 401_: "Unauthorized" si no sos admnistrador
+
 Ejemplo de request:
 
 	POST localhost/WEB2/API/api/cervezas
 
 
 **GET:/cervezas/:ID** -> Este Endpoint devuelve una cerveza especifica de la base de datos indicando su ID. Si no se encuentra
-devuelve un mensaje tipo: "La cerveza con el id=' ' no existe."
+devuelve un mensaje de 
+
+	_error 404_(NOT FOUND): "La cerveza con el id=' ' no existe."
 
 Ejemplo de request:
 
 	GET localhost/WEB2/API/api/cervezas/5
 
 
-**PUT:/cervezas/:ID** -> Este endpoint modifica una cerveza especificando su ID. Si esta existe, devuelve un mensaje tipo: "La cerveza con el id=' ' ha sido modificada.". Caso contrario, devuelve un mensaje tipo: "La cerveza con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
+**PUT:/cervezas/:ID** -> Este endpoint modifica una cerveza (verificando antes si sos usuario autorizado para realizar la petición) especificando su ID. Si esta existe, devuelve un mensaje de
+
+	_codigo 200_(OK): "La cerveza con el id=' ' ha sido modificada.".
+ 
+ Caso contrario, devuelve un mensaje de 
+ 
+ 	_error 404_(NOT FOUND): "La cerveza con el id=' ' no existe." 
+
+  	_error 401_: "Unauthorized" si no sos admnistrador
+  
 
 
 Ejemplo de request:
@@ -62,7 +75,15 @@ Ejemplo de request:
 	PUT localhost/WEB2/API/api/cervezas/5
 
  
-**DELETE:/cervezas/:ID** -> Este endpoint elimina una cerveza especificando su ID. Si esta existe, devuelve un mensaje tipo: "La cerveza con el id=' ' ha sido borrada.". Caso contrario, devuelve un mensaje tipo: "La cerveza con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
+**DELETE:/cervezas/:ID** -> Este endpoint elimina una cerveza (verificando antes si sos usuario autorizado para realizar la petición) especificando su ID. Si esta existe, devuelve un mensaje de 
+
+	_codigo 200_(OK): "La cerveza con el id=' ' ha sido borrada.". 
+ 
+ Caso contrario, devuelve un mensaje de
+ 
+ 	_error 404_(NOT FOUND): "La cerveza con el id=' ' no existe." 
+
+ 	 _error 401_: "Unauthorized" si no sos admnistrador
 
 Ejemplo de request:
 
@@ -89,26 +110,47 @@ _ESTILOS_
     
 **POST:/estilos** -> Este endpoint agrega un nuevo estilo de cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
 
+	_error 401_: "Unauthorized" si no sos admnistrador
+
 Ejemplo de request:
 
 	POST localhost/WEB2/API/api/estilos
 
 **GET:/estilos/:ID** -> Este Endpoint devuelve un estilo de cerveza especifico de la base de datos indicando su ID. Si no se encuentra
-devuelve un mensaje tipo: "El estilo con el id=' ' no existe."
+devuelve un mensaje de 
+
+	_error 404_(NOT FOUND): "El estilo con el id=' ' no existe."
 
 Ejemplo de request:
 
 	GET localhost/WEB2/API/api/estilos/2
 
  
-**PUT:/estilos/:ID** -> Este endpoint modifica un estilo de cerveza especificando su ID. Si este existe, devuelve un mensaje tipo: "El estilo con el id=' ' ha sido modificado.". Caso contrario, devuelve un mensaje tipo: "El estilo con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
+**PUT:/estilos/:ID** -> Este endpoint modifica un estilo de cerveza (verificando antes si sos usuario autorizado para realizar la petición) especificando su ID. Si este existe, devuelve un mensaje de _
+
+	_codigo 200_(OK)_: "El estilo con el id=' ' ha sido modificado.".
+ 
+Caso contrario, devuelve un mensaje de 
+
+	_error 404_(NOT FOUND): "El estilo con el id=' ' no existe."
+
+ 	_error 401_: "Unauthorized" si no sos admnistrador
 
 Ejemplo de request:
 
 	PUT localhost/WEB2/API/api/estilos/2
 
 
-**DELETE:/estilos/:ID** -> Este endpoint elimina un estilo de cerveza especificando su ID. Si este existe, devuelve un mensaje tipo: "El estilo con el id=' ' ha sido borrado.". Caso contrario, devuelve un mensaje tipo: "El estilo con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
+**DELETE:/estilos/:ID** -> Este endpoint elimina un estilo de cerveza (verificando antes si sos usuario autorizado para realizar la petición) especificando su ID. Si este existe, devuelve un mensaje de 
+
+	_codigo 200_(OK): "El estilo con el id=' ' ha sido borrado.".
+ 
+Caso contrario, devuelve un mensaje de 
+
+	_error 404_(NOT FOUND): "El estilo con el id=' ' no existe."
+
+ 	_error 401_: "Unauthorized" si no sos admnistrador
+
 
 Ejemplo de request:
 
@@ -137,22 +179,29 @@ Ejemplo de request:
 	GET localhost/WEB2/API/api/comentarios
 
     
-**GET:/comentarios/:ID** -> Este Endpoint devuelve un comentario especifico de la base de datos indicando su ID. Si no se encuentra, devuelve un mensaje tipo: "El comentario con el id=' ' no existe."
+**GET:/comentarios/:ID** -> Este Endpoint devuelve un comentario especifico de la base de datos indicando su ID. Si no se encuentra, devuelve un mensaje de 
+
+	_error 404_(NOT FOUND): "El comentario con el id=' ' no existe."
 
 Ejemplo de request:
 
 	GET localhost/WEB2/API/api/comentarios/3
 
  
-**DELETE:/comentarios/:ID** -> Este endpoint elimina un comentario de cerveza especificando su ID. Si este existe, devuelve un mensaje tipo: "El comentario con el id=' ' ha sido borrado.". Caso contrario, devuelve un mensaje tipo: "El comentario con el id=' ' no existe." (verificando antes si sos usuario autorizado para realizar la petición)
+**DELETE:/comentarios/:ID** -> Este endpoint elimina un comentario de cerveza (verificando antes si sos usuario autorizado para realizar la petición) especificando su ID. Si este existe, devuelve un mensaje de 
+
+	_codigo 200_(OK): "El comentario con el id=' ' ha sido borrado.".
+
+Caso contrario, devuelve un mensaje de 
+
+	_error 404_(NOT FOUND): "El comentario con el id=' ' no existe." 
 
 Ejemplo de request:
 
 	DELETE localhost/WEB2/API/api/comentarios/3
 
 
-
-**POST:/comentarios** -> Este endpoint agrega un nuevo comentario de una cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
+**POST:/comentarios** -> Este endpoint agrega un nuevo comentario de una cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición). Si el comentario se agrega correctamente se muestra _un codigo 200 (OK)_
 
 Ejemplo de request:
 
