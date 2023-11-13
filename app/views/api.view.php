@@ -10,12 +10,8 @@
         private function _requestStatus($code){
             $status = array(
                 200 => "OK",
-<<<<<<< HEAD
                 201 => "Created",
-=======
-                200 => "Created",
                 400 => "Bad Request",
->>>>>>> rama01
                 404 => "Not Found",
                 500 => "Internal server error",
             );
