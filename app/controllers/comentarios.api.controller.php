@@ -16,42 +16,49 @@
             $this->authHelper = new AuthHelper();
         }
 
-        function get($params = []){
-            $parametros = [];
+        function getComentarios($params = []){
+            $input = !empty($_GET["search_input"]) ? $_GET["search_input"] : "";
+            $order = (!empty($_GET['order']) && $_GET['order'] == 1) ? "DESC" : "ASC";
+    
+            $columnas_permitidas = ['id_comentario', 'detalle', 'cerveza'];
+            $sorted_by = (!empty($_GET['sort_by']) && in_array($_GET['sort_by'], $columnas_permitidas)) ? $_GET['sort_by'] : "id_cerveza";
+    
+            $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+            $per_page = !empty($_GET['per_page']) ? (int)$_GET['per_page'] : 10;
+            $start_index = ($page - 1) * $per_page;
+    
+            $comentarios = $this->model->getComentarios($input, $order, $per_page, $start_index, $sorted_by);
+            return $this->view->response($comentarios, 200);
+        }
 
-            if (isset($_GET['sort'])){
-                $parametros['sort'] = $_GET['sort'];
+        function getComentario($params = [])
+        {
+            $id = $params[":ID"];
+    
+            if (empty($id)) {
+                $this->view->response('No se proporciono un id', 400);
             }
+    
+            $comentario = $this->model->getComentarioById($id);
 
-            if (isset($_GET['order'])){
-                $parametros['order'] = $_GET['order'];
-            }
-            if (empty($params)){ //si no hay parametro (algun id), muestra todos los comentarios.
-                $comentarios = $this->model->getComentarios($parametros);
-                $this->view->response($comentarios, 200);
-            }
-            else{
-                $comentario = $this->model->getComentario($params[':ID']);
-                if (!empty($comentario)){
-                    //subrecurso
-                    if(isset($params[':subrecurso']) && $params[':subrecurso']){
-                        switch ($params[':subrecurso']){
-                            case 'detalle':
-                                $this->view->response($comentario->detalle, 200);
-                            break;
-                            case 'cerveza';
-                                $this->view->response($comentario->cerveza, 200);
-                            break;
-                            default:
-                                $this->view->response('El comentario no contiene '.$params[':subrecurso'].'.', 404);
-                            break;
-                        }
-                    }else{
-                        $this->view->response($comentario, 200);
+            if(!empty($comentario)){
+                if(isset($params[':subrecurso']) && $params[':subrecurso']){
+                    switch ($params[':subrecurso']){
+                        case 'detalle':
+                            $this->view->response($comentario->detalle, 200);
+                        break;
+                        case 'cerveza':
+                            $this->view->response($comentario->cerveza, 200);
+                        break;
+                        default:
+                            $this->view->response('El comentario no contiene '.$params[':subrecurso'].'.', 404);
+                        break;
                     }
                 }else{
-                    $this->view->response('El comentario con el id='.$params[':ID'].' no existe.', 404);
+                    $this->view->response($comentario, 200);
                 }
+            }else{
+                $this->view->response('El comentario con el id='.$params[':ID'].' no existe.', 404);
             }
         }
 
@@ -67,12 +74,12 @@
                 return;
             }
             $id_comentario = $params[':ID'];
-            if($this->model->getComentario($id_comentario)){
+            if($this->model->getComentarioById($id_comentario)){
                 $result = $this->model->deleteComentario($id_comentario);
                 if($result > 0){
                     return $this->view->response("El comentario fue eliminado" , 200);
                 }else{
-                    return $this->view->response("El comentario no se eliminó", 404);
+                    return $this->view->response("El comentario no se eliminó", 500);
                 }
             }else {
                 return $this->view->response("El comentario que desea eliminar no existe", 404);
@@ -91,7 +98,8 @@
                 $id = $this->model->addComentario($detalle, $id_cerveza);
 
                 //devuelvo el recurso creado.
-                $comentario = $this->model->getComentario($id);
+                $comentario = $this->model->getComentarioById($id);
+                $this->view->response(('El comentario se creo existosamente:'));
                 $this->view->response($comentario, 201);
             }
         }
@@ -109,15 +117,19 @@
                 return;
             }
             $id = $params[':ID'];
-            $comentario = $this->model->getComentario($id);
+            $comentario = $this->model->getComentarioById($id);
 
             if($comentario){
                 $body = $this->getData();
-                $detalle = $body->detalle;
-                $id_cerveza = $body->id_cerveza;
-
-                $this->model->updateComentario($detalle, $id_cerveza, $id);
-                $this->view->response('el comentario con el id = '.$id.' ha sido modificado.', 200);
+                if(isset($body)){
+                    $detalle = $body->detalle;
+                    $id_cerveza = $body->id_cerveza;
+    
+                    $this->model->updateComentario($detalle, $id_cerveza, $id);
+                    $this->view->response('el comentario con el id = '.$id.' ha sido modificado.', 200);
+                }else{
+                    $this->view->response('No se modifico el comentario, revise los campos.', 400);
+                }
             }else{
                 $this->view->response('el comentario con el id = '.$id.' no existe.', 404);
             }

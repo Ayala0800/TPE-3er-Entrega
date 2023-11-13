@@ -2,31 +2,27 @@
 
 class ComentariosModel extends Model{
 
-    function getComentarios($parametros = []){
-        $sort = isset($parametros['sort']) ? $parametros['sort'] : 'id_comentario'; //valor x default
-        $order = isset($parametros['order']) ? strtoupper($parametros['order']) : 'ASC'; //valor x default
+    function getComentarios($input, $query_order, $per_page, $start_index, $sorted_by){
+        $limit = intval($per_page);
+        $offset = intval($start_index);
 
-        $validColumns = ['id_comentario', 'detalle', 'id_cerveza'];
-        if(!in_array($sort, $validColumns)){
-            $sort = 'id_comentario';
-        }
-
-        $sentence = $this->db->prepare(
-            "SELECT comentarios.*, cervezas.nombre AS cerveza
-            FROM comentarios
-            JOIN cervezas ON comentarios.id_cerveza = cervezas.id_cerveza ORDER BY $sort $order");
-        $sentence->execute();
-        $comentarios = $sentence->fetchAll(PDO::FETCH_OBJ);
+        $query = $this->db->prepare("SELECT comentarios.*, cervezas.nombre AS cerveza FROM comentarios JOIN cervezas ON comentarios.id_cerveza = cervezas.id_cerveza WHERE cervezas.nombre LIKE ? ORDER BY {$sorted_by} {$query_order} LIMIT {$limit} OFFSET {$offset}");
+        $query->execute(["%$input%"]);
+        $comentarios = $query->fetchAll(PDO::FETCH_OBJ);
         return $comentarios;
     }
 
-    function getComentario($id_comentario){
-        $sentence = $this->db->prepare("SELECT comentarios.*, cervezas.nombre AS cerveza
+    function getComentarioById($id){
+        /*$sentence = $this->db->prepare("SELECT comentarios.*, cervezas.nombre AS cerveza
         FROM comentarios
         JOIN cervezas ON comentarios.id_cerveza = cervezas.id_cerveza
-        WHERE id_comentario=?");
-        $sentence->execute(array($id_comentario));
-        $comentario = $sentence->fetch(PDO::FETCH_OBJ);
+        WHERE id_comentario=?");*/
+        $query = $this->db->prepare('SELECT comentarios.*, cervezas.nombre AS cerveza
+        FROM comentarios
+        JOIN cervezas ON comentarios.id_cerveza = cervezas.id_cerveza
+        WHERE id_comentario=?');
+        $query->execute([$id]);
+        $comentario = $query->fetch(PDO::FETCH_OBJ);
         return $comentario;
     }
 

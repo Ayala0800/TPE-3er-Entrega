@@ -16,7 +16,6 @@ class EstilosApiController extends ApiController{
     }
 
     function get($params = []){
-        /*---------------------FUNCION GET------------------------------*/
         if (empty($params)){
             $estilos = $this->model->getEstilos();
             $this->view->response($estilos, 200);
@@ -42,15 +41,17 @@ class EstilosApiController extends ApiController{
             $this->view->response('Forbidden', 403);
             return;
         }
-        /*---------------FUNCION CREATE--------------------------- */
+
         $body = $this->getData();
         $nombre = $body->nombre;
+        
         if(empty($nombre)){
             $this->view->response("Complete los datos", 400);
         }else{
             $id = $this->model->addEstilo($nombre);
             //devuelvo el recurso creado.
             $estilo = $this->model->getEstilo($id);
+            $this->view->response('Estilo creado exitosamente.');
             $this->view->response($estilo, 201);
         }
     }
@@ -67,7 +68,6 @@ class EstilosApiController extends ApiController{
             $this->view->response('Forbidden', 403);
             return;
         }
-        /*---------------FUNCION DELETE--------------------------- */
         $id = $params[':ID'];
         $estilo = $this->model->getEstilo($params[':ID']);
 
@@ -91,7 +91,6 @@ class EstilosApiController extends ApiController{
             $this->view->response('Forbidden', 403);
             return;
         }
-        /*---------------FUNCION UPDATE--------------------------- */
 
         $id = $params[':ID'];
         $estilo = $this->model->getEstilo($params[':ID']);

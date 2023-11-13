@@ -22,12 +22,12 @@ $router->addRoute('estilos/:ID', 'GET',    'EstilosApiController', 'get');
 $router->addRoute('estilos/:ID', 'PUT',    'EstilosApiController', 'update');
 $router->addRoute('estilos/:ID', 'DELETE', 'EstilosApiController', 'delete');
 
-$router->addRoute('comentarios',                'GET',    'ComentariosApiController', 'get');
+$router->addRoute('comentarios',                'GET',    'ComentariosApiController', 'getComentarios');
 $router->addRoute('comentarios',                'POST',   'ComentariosApiController', 'create');
-$router->addRoute('comentarios/:ID',            'GET',    'ComentariosApiController', 'get');
+$router->addRoute('comentarios/:ID',            'GET',    'ComentariosApiController', 'getComentario');
 $router->addRoute('comentarios/:ID',            'PUT',    'ComentariosApiController', 'update');
 $router->addRoute('comentarios/:ID',            'DELETE', 'ComentariosApiController', 'delete');
-$router->addRoute('comentarios/:ID/:subrecurso','GET',    'ComentariosApiController', 'get');
+$router->addRoute('comentarios/:ID/:subrecurso','GET',    'ComentariosApiController', 'getComentario');
 
 $router->addRoute('user/token', 'GET', 'UserApiController', 'getToken');
 
