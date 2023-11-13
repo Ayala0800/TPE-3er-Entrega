@@ -114,8 +114,8 @@ _PAGINAR_
 
 
 _FILTRAR_
-
-*Ruta de ejemplo para Filtrar*= 'http://localhost/WEB2/API/api/cervezas?search_input=IPA'
+`#ffffff` 
+*Ruta de ejemplo para Filtrar*= http://localhost/WEB2/API/api/cervezas?search_input=IPA
 
 - ?search_input=nombre: en este caso va a filtrar todas las cervezas que en su nombre contengan el string "IPA".
 
