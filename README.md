@@ -8,6 +8,7 @@ Ademas, se permite hacer una busqueda *filtrada* por un campo y *orden* (ASC ó 
 
 ## ENDPOINTS 
 
+
 ##CERVEZAS
 
 
@@ -89,7 +90,9 @@ Ejemplo de request:
 	DELETE localhost/WEB2/API/api/cervezas/5
 
 
+
 ##ESTILOS
+
 
 
 **GET:/estilos** -> Este Endpoint devuelve la lista de estilos de la base de datos, que se mostraran de esta manera:
@@ -156,7 +159,9 @@ Ejemplo de request:
 	DELETE localhost/WEB2/API/api/estilos/2
 
 
+
 ##COMENTARIOS
+
 
 
 **GET:/comentarios** -> Este Endpoint devuelve la lista de comentarios realizados sobre una cerveza especifica de la base de datos, que se mostraran de esta manera:
@@ -210,6 +215,7 @@ Ejemplo de request:
 
 ##PAGINAR
 
+
 *Ruta de ejemplo para Paginar*
 
 	http://localhost/WEB2/API/api/cervezas?per_page=5&page=1
@@ -219,7 +225,9 @@ Ejemplo de request:
 - ?page: indica que pagina mostrar, en este caso la 1.
 
 
+
 ##FILTRAR
+
 
 *Ruta de ejemplo para Filtrar*=
 
@@ -260,6 +268,7 @@ Ejemplo de devolución:
 	        "descripcion": "prueba",
 	        "estilo": "IPA (india pale ale)"
 	} ]
+
 
  ##ORDENAR
 
