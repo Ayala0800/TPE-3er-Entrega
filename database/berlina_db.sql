@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2023 a las 19:55:50
+-- Tiempo de generación: 13-11-2023 a las 23:56:36
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,17 +43,13 @@ CREATE TABLE `cervezas` (
 
 INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stock`, `descripcion`) VALUES
 (1, 'Old Ale', 19, 7.5, 5, 50, 'De color granate, gran cuerpo y espiritu apartado por un blend de 6 maltas caramelizadas. Su perfil maltoso, alicorado y dulzon, con notas de vainilla y un reposo de madurador de 60 dias , hacen de esta una cerveza de gran cuerpo'),
-(2, 'Sureña', 28, 5, 6, 30, 'A base de maltas caramelizadas que le otrogan un profundo , pero cristalino tono ambár con reflejos rojiizos. Cristalina y profunda como los lagos del sur argentino  '),
 (4, 'Raices', 32, 4, 1, 50, 'Una pale ale de estilo americano con un 100% de lupulo Victoria cosechado en El bolson que le aporta notas a Maracuya y Mandarina y con adicion de ralladura de raiz de Jengibre en el whirlpool, es por eso que decimos que es un GINGER PALE ALE'),
 (5, 'Colonia Suiza', 21, 7, 3, 20, 'Cerveza rubia de gran cuerpo y complejidad en boca enriquecida, gracias al caracter especiado y el perfil espirituoso de las bayas de enebro silvestres'),
 (6, 'IPA', 56, 5, 2, 60, 'Predominio de maltas caramelizadas. Caracter intenso debido a la cantidad de lúpulo que la compone. De amargor bien marcado'),
-(15, 'Lucas', 55, 22, 2, 12, 'Probando metodo PUT para update'),
-(16, 'pruebita', 52, 43, 1, 7, 'Probando metodo POST'),
-(19, 'messi', 8, 1, 2, 22, 'goat'),
-(20, 'LA', 33, 12, 4, 6, 'rica'),
-(22, 'paginando2', 22, 33, 3, 45, 'relleno2'),
-(23, 'paginando3', 22, 33, 3, 45, 'relleno3'),
-(24, 'paginando4', 22, 33, 3, 45, 'relleno4'),
+(16, 'Sunshine', 52, 43, 1, 7, 'Probando metodo POST'),
+(19, 'Lorenzo´s', 8, 1, 2, 22, 'goat'),
+(23, 'Nina´s', 22, 33, 3, 45, 'relleno3'),
+(24, 'OktoberFest', 22, 33, 3, 45, 'relleno4'),
 (25, 'paginando5', 22, 33, 3, 45, 'relleno5'),
 (26, 'paginando6', 22, 33, 3, 45, 'relleno6'),
 (27, 'paginando7', 22, 33, 3, 45, 'relleno7'),
@@ -63,10 +59,7 @@ INSERT INTO `cervezas` (`id_cerveza`, `nombre`, `IBU`, `ALC`, `id_estilo`, `stoc
 (31, 'paginando11', 22, 33, 3, 45, 'relleno11'),
 (32, 'Red IPA', 12, 15, 2, 33, 'prueba'),
 (33, 'Black IPA', 12, 15, 2, 33, 'prueba'),
-(34, 'Golden IPA', 12, 15, 2, 33, 'prueba'),
-(35, 'Premium IPA', 12, 15, 1, 33, 'prueba'),
-(36, 'agregando', 77, 44, 1, 55, 'agregando mediante post'),
-(37, 'modificando', 8, 9, 1, 44, 'modificando mediante PUT2');
+(34, 'Golden IPA', 12, 15, 2, 33, 'prueba');
 
 -- --------------------------------------------------------
 
@@ -79,29 +72,6 @@ CREATE TABLE `comentarios` (
   `detalle` varchar(255) NOT NULL,
   `id_cerveza` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `comentarios`
---
-
-INSERT INTO `comentarios` (`id_comentario`, `detalle`, `id_cerveza`) VALUES
-(2, 'editando dlasdlasdasfasfsaf', 2),
-(3, 'piola', 2),
-(6, 'comentario relleno 1', 20),
-(7, 'comentario relleno 2', 20),
-(8, 'comentario relleno 2', 20),
-(10, 'comentario relleno 4', 20),
-(11, 'comentario relleno 4', 20),
-(12, 'editando mediante PUT', 22),
-(13, 'comentario relleno 6', 20),
-(14, 'comentario relleno 7', 20),
-(15, 'comentario relleno 8', 20),
-(16, 'comentario relleno 6', 20),
-(17, 'comentario relleno 4', 20),
-(18, 'comentario relleno 5', 20),
-(19, 'comentario relleno 3', 20),
-(20, 'comentario relleno 5', 20),
-(21, 'editando dlasdlasdasfasfsaf', 22);
 
 -- --------------------------------------------------------
 
@@ -124,9 +94,7 @@ INSERT INTO `estilos` (`id_estilo`, `nombre`) VALUES
 (3, 'Golden Ale'),
 (4, 'Stout'),
 (5, 'Blend'),
-(6, 'Amber Ale'),
-(11, 'editado'),
-(12, 'modificando con PUT');
+(11, 'editado');
 
 -- --------------------------------------------------------
 
@@ -165,7 +133,7 @@ ALTER TABLE `cervezas`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `id_cerveza` (`id_cerveza`);
+  ADD KEY `id_cerveza` (`id_cerveza`) USING BTREE;
 
 --
 -- Indices de la tabla `estilos`
@@ -215,15 +183,16 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `cervezas`
 --
 ALTER TABLE `cervezas`
-  ADD CONSTRAINT `estilo_id` FOREIGN KEY (`id_estilo`) REFERENCES `estilos` (`id_estilo`);
+  ADD CONSTRAINT `estilo_id` FOREIGN KEY (`id_estilo`) REFERENCES `estilos` (`id_estilo`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `id_cerveza` FOREIGN KEY (`id_cerveza`) REFERENCES `cervezas` (`id_cerveza`);
+  ADD CONSTRAINT `id_cerveza` FOREIGN KEY (`id_cerveza`) REFERENCES `cervezas` (`id_cerveza`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
