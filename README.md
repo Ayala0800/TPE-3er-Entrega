@@ -265,7 +265,6 @@ Ejemplo de devolución:
 	        "estilo": "IPA (india pale ale)"
 	} ]
 
-<<<<<<< HEAD
 *Ruta de ejemplo para Filtrar comentarios*= http://localhost/WEB2/API/api/comentarios?search_input=Sureña
 
 - ?search_input=sureña: en este caso va a filtrar todos los comentarios que pretenezca a la cerveza Sureña.
@@ -286,8 +285,6 @@ Ejemplo de devolución:
 	}
 
 
-=======
->>>>>>> rama01
 
  ### _ORDENAR_
 
@@ -300,14 +297,9 @@ Los resultados de la consulta pueden ordenarse según campos y órdenes ("asc" o
  - ?sort_by : este parámetro recibe un string que debe corresponder con uno de los campos de la entidad solicitada (el orden por defecto es de manera ASC por id_cerveza).
 
  - ?order : este parámetro recibe un número entero que puede ser 1 o 0. Si es 1 se ordenará la lista de manera descendiente. De ser 0 o cualquier otro número se ordenara ascendentemente.
-<<<<<<< HEAD
 
 
 ### _ADMINISTRADOR_
 
 - Nombre de usuario: admin
 - Contraseña: admin
-=======
- 
-
->>>>>>> rama01
