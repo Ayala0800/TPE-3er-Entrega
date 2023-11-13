@@ -9,13 +9,12 @@ require_once 'app/controllers/comentarios.api.controller.php';
 $router = new Router();
 
 
-$router->addRoute('cervezas',                 'GET',    'CervezasApiController', 'get');
-//$router->addRoute('cervezas/:page/:perPage',  'GET',    'CervezasApiController', 'get'); //paginar
+$router->addRoute('cervezas',                 'GET',    'CervezasApiController', 'getCervezas');
 $router->addRoute('cervezas',                 'POST',   'CervezasApiController', 'create');
-$router->addRoute('cervezas/:ID',             'GET',    'CervezasApiController', 'get');
+$router->addRoute('cervezas/:ID',             'GET',    'CervezasApiController', 'getCerveza');
 $router->addRoute('cervezas/:ID',             'PUT',    'CervezasApiController', 'update');
 $router->addRoute('cervezas/:ID',             'DELETE', 'CervezasApiController', 'delete');
-$router->addRoute('cervezas/:ID/:subrecurso', 'GET',    'CervezasApiController', 'get');
+$router->addRoute('cervezas/:ID/:subrecurso', 'GET',    'CervezasApiController', 'getCerveza');
 
 $router->addRoute('estilos',     'GET',    'EstilosApiController', 'get');
 $router->addRoute('estilos',     'POST',   'EstilosApiController', 'create');

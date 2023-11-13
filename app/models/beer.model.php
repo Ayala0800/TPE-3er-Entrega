@@ -3,49 +3,25 @@ require_once 'app/models/model.php';
 require_once 'config.php';
 class BeerModel extends Model{
 
-    //DEVUELVE TODOS LAS CERVEZAS AGREGANDO LA COLUMNA DEL NOMBRE DE LA CATEGORIA A LA QUE PERTENECE
-    function getCervezas($order, $field, $filterBy, $filterValue, $limit, $offset){
-        $sql = "SELECT cervezas.*, estilos.nombre AS estilo 
-        FROM cervezas
-        JOIN estilos 
-        ON cervezas.id_estilo = estilos.id_estilo";
+    public function getCervezas($input, $query_order, $per_page, $start_index, $sorted_by)
+    {
+        $limit = intval($per_page);
+        $offset = intval($start_index);
 
-        switch($filterBy){
-            case 'IBU': $sql .= ' WHERE IBU = ' . '\''. $filterValue.'\'';
-                break;
-            case 'ALC': $sql .= ' WHERE ALC = ' . '\''. $filterValue.'\'';
-                break;
-            default: $sql .= ' ';
-                break;
-        }
-        switch($order){
-            case 'ASC': $sql .= ' ORDER BY ' . $field . ' ASC';
-                break;
-            case 'DESC': $sql .= ' ORDER BY ' . $field . ' DESC';
-                break;
-            default: $sql .= ' ORDER BY id_cerveza ASC';
-                break;
-        }
-        if($limit != 'null'){
-            $sql .= ' LIMIT ' . $limit;
-        }
-        if($offset != 'null'){
-            $sql .= ' OFFSET ' . $offset;
-        }
-        $sentence = $this->db->prepare($sql);
-        $sentence->execute();
-        return $sentencey->fetchAll(PDO::FETCH_OBJ);
+        $query = $this->db->prepare("SELECT Cervezas.*, estilos.nombre AS estilo FROM cervezas JOIN estilos ON cervezas.id_estilo = estilos.id_estilo WHERE cervezas.nombre LIKE ? ORDER BY {$sorted_by} {$query_order} LIMIT {$limit} OFFSET {$offset}");
+        $query->execute(["%$input%"]);
+        $cervezas = $query->fetchAll(PDO::FETCH_OBJ);
+        return $cervezas;
     }
-   
-    //DEVUELVE LA CERVEZA CON EL ID PASADO POR PARAMETRO
-    function getCerveza($id_cerveza){
-        $sentence = $this->db->prepare(
-            "SELECT cervezas.*, estilos.nombre AS estilo
-            FROM cervezas
-            JOIN estilos ON cervezas.id_estilo = estilos.id_estilo
-            WHERE id_cerveza=?");
-        $sentence->execute(array($id_cerveza));
-        $cerveza = $sentence->fetch(PDO::FETCH_OBJ);
+
+    public function getCervezaById($id)
+    {
+        $query = $this->db->prepare('SELECT cervezas.*, estilos.nombre AS estilo
+        FROM cervezas
+        JOIN estilos ON cervezas.id_estilo = estilos.id_estilo
+        WHERE id_cerveza=?');
+        $query->execute([$id]);
+        $cerveza = $query->fetch(PDO::FETCH_OBJ);
         return $cerveza;
     }
 

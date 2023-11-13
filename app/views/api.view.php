@@ -11,6 +11,7 @@
             $status = array(
                 200 => "OK",
                 200 => "Created",
+                400 => "Bad Request",
                 404 => "Not Found",
                 500 => "Internal server error",
             );
