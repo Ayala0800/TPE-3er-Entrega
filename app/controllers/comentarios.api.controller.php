@@ -21,7 +21,7 @@
             $order = (!empty($_GET['order']) && $_GET['order'] == 1) ? "DESC" : "ASC";
     
             $columnas_permitidas = ['id_comentario', 'detalle', 'cerveza'];
-            $sorted_by = (!empty($_GET['sort_by']) && in_array($_GET['sort_by'], $columnas_permitidas)) ? $_GET['sort_by'] : "id_cerveza";
+            $sorted_by = (!empty($_GET['sort_by']) && in_array($_GET['sort_by'], $columnas_permitidas)) ? $_GET['sort_by'] : "id_comentario";
     
             $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
             $per_page = !empty($_GET['per_page']) ? (int)$_GET['per_page'] : 10;
