@@ -102,3 +102,53 @@ _COMENTARIOS_
 
 
 **POST:/comentarios** -> Este endpoint agrega un nuevo comentario de una cerveza que sera agregada en la bd (verificando antes si sos usuario autorizado para realizar la petición)
+
+
+_PAGINAR_
+
+*Ruta de ejemplo para Paginar*: http://localhost/WEB2/API/api/cervezas?per_page=5&page=1
+
+- ?per_page: indica cuantos productos quiero mostrar por pagina, en este caso 5 (es decir, se mostraran la primeras 5 cervezas)
+
+- ?page: indica que pagina mostrar, en este caso la 1.
+
+
+_FILTRAR_
+`#ffffff` 
+*Ruta de ejemplo para Filtrar*= http://localhost/WEB2/API/api/cervezas?search_input=IPA
+
+- ?search_input=nombre: en este caso va a filtrar todas las cervezas que en su nombre contengan el string "IPA".
+
+Ejemplo de devolución:
+
+	{
+	 	"id_cerveza": 6,
+	        "nombre": "IPA",
+	        "IBU": 56,
+	        "ALC": 5,
+	        "id_estilo": 2,
+	        "stock": 60,
+	        "descripcion": "Predominio de maltas caramelizadas...",
+	        "estilo": "IPA (india pale ale)"
+	},
+	{	
+	 	"id_cerveza": 32,
+		"nombre": "Red IPA",
+		"IBU": 12,
+	        "ALC": 15,
+	        "id_estilo": 2,
+	        "stock": 33,
+	        "descripcion": "prueba",
+	        "estilo": "IPA (india pale ale)"
+	},
+	{
+	        "id_cerveza": 33,
+	        "nombre": "Black IPA",
+	        "IBU": 12,
+	        "ALC": 15,
+	        "id_estilo": 2,
+	        "stock": 33,
+	        "descripcion": "prueba",
+	        "estilo": "IPA (india pale ale)"
+	}
+
